@@ -1,0 +1,6 @@
+functions-framework==3.*
+openai>0.27.0
+flask
+pydantic
+flask-cors
+google-cloud-storage
