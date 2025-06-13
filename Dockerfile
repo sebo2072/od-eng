@@ -1,7 +1,5 @@
-# Use an official lightweight Python image
 FROM python:3.10-slim
 
-# Set working directory
 WORKDIR /app
 
 # Install dependencies
@@ -11,8 +9,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Expose the port Functions Framework uses
+# Tell Docker (and readers) we listen on 8080
+EXPOSE 8080
 ENV PORT 8080
 
-# Launch the app via Functions Framework
-CMD ["functions-framework", "--target", "app", "--port", "8080"]
+# Launch with a 240 s timeout, binding to all interfaces
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "--timeout", "240", "main:app"]
