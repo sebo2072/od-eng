@@ -4,3 +4,4 @@ flask
 pydantic
 flask-cors
 google-cloud-storage
+gunicorn
