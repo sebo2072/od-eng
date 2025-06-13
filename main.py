@@ -59,7 +59,7 @@ import json
 from pydantic import ValidationError
 
 @app.route('/translate', methods=['POST'])
-def translate(request):
+def translate():
     print('[DEBUG] Received /translate request')
     data = request.get_json()
     if not data or 'text' not in data:
@@ -106,3 +106,8 @@ def translate(request):
         abort(500, description=f"Response schema validation failed: {e}")
 
     return jsonify(result.dict())
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
+
